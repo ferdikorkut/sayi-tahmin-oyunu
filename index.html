@@ -9,21 +9,30 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="startScreen">
         <h1>Gizli Sayı</h1>
-        <p>1 ile 100 arasında bir sayı tahmin yap, skorunu koru!</p>
+        <p>Maksimum sayıyı belirle ve oyunu başlat!</p>
+        <div class="input-area">
+            <input type="number" id="maxNumberInput" placeholder="Maximum sayıyı girin" />
+            <button id="startButton">Başlat</button>
+        </div>
+    </div>
+
+    <div class="container" id="gameScreen" style="display: flex;">
+        <h1>Gizli Sayı</h1>
+        <p id="gameDescription">1 ile ? arasında bir sayı tahmin yap, skorunu koru!</p>
         <div class="secret-number" id="secretNumber">?</div>
         <div class="scores">
             <div class="score">
                 <p>Puan</p>
-                <p id="score">100</p>
+                <p id="score">?</p>
             </div>
             <div class="score">
                 <p>En Yüksek Skor</p>
-                <p id="highScore">100</p>
+                <p id="highScore">?</p>
             </div>
         </div>
-        <div class="message" id="message">Yeni Oyun! 1-100 arasında bir sayı tahmin et</div>
+        <div class="message" id="message">1 ile ? arasında bir sayı tahmin et!</div>
         <div class="input-area">
             <input type="number" id="guessInput" placeholder="Tahmininizi girin" />
             <button id="guessButton">Kontrol Et</button>
