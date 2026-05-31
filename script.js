@@ -125,6 +125,11 @@ const checkGuess = function () {
 // Tahmin butonuna tıklama ve Enter tuşu ile tahmini kontrol eder
 document.getElementById('guessButton').addEventListener('click', checkGuess);
 
+// Input'a tıklanınca eski değeri temizle
+document.getElementById('guessInput').addEventListener('focus', function () {
+    this.value = '';
+});
+
 document.getElementById('guessInput').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         checkGuess();
