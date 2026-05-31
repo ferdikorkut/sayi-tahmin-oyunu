@@ -76,8 +76,8 @@ const resetGame = function () {
     displaySecretNumber('?');
     displayMessage('Tahmin yapmaya başlayabilirsin!');
 
-    // Doğru tahmin sonrası eklenen yeşil görsel geri bildirimi temizle
-    document.getElementById('secretNumber').classList.remove('secret-number-correct');
+    // Doğru tahmin sonrası eklenen görsel geri bildirimleri temizle
+    document.getElementById('secretNumber').classList.remove('secret-number-correct', 'pop');
     document.body.classList.remove('body-correct');
 
     // Butonu tekrar checkGuess'e bağla
@@ -107,8 +107,9 @@ const checkGuess = function () {
         document.getElementById('guessButton').addEventListener('click', resetGame);
         document.getElementById('guessInput').disabled = true;
 
-        // Doğru tahmin görsel geri bildirimi: kutu ve arka plan yeşile döner
+        // Doğru tahmin görsel geri bildirimi: kutu ve arka plan yeşile döner, kutu büyür
         document.getElementById('secretNumber').classList.add('secret-number-correct');
+        document.getElementById('secretNumber').classList.add('pop');
         document.body.classList.add('body-correct');
 
         if (score > highScore) {
@@ -119,6 +120,15 @@ const checkGuess = function () {
         score--;
         document.getElementById('score').textContent = score;
         displayMessage(guess > secretNumber ? 'Çok yüksek! Sayıyı düşür!' : 'Çok düşük! Sayıyı artır!');
+
+        // Yanlış tahmin animasyonları
+        const secretEl = document.getElementById('secretNumber');
+        secretEl.classList.add('shake');
+        document.body.classList.add('flash-red');
+
+        // Animasyon bitince class'ları kaldır (tekrar tekrar çalışsın diye)
+        secretEl.addEventListener('animationend', () => secretEl.classList.remove('shake'), { once: true });
+        document.body.addEventListener('animationend', () => document.body.classList.remove('flash-red'), { once: true });
     }
 };
 

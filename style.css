@@ -177,3 +177,33 @@ button:hover {
     border-radius: 20px;
     margin-top: 10px;
 }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-10px); }
+    40%       { transform: translateX(10px); }
+    60%       { transform: translateX(-10px); }
+    80%       { transform: translateX(10px); }
+}
+
+@keyframes flashRed {
+    0%, 100% { background-color: var(--background-color); }
+    50%       { background-color: var(--wrong-color); }
+}
+
+.shake {
+    animation: shake 0.4s ease;
+}
+
+.flash-red {
+    animation: flashRed 0.4s ease;
+}
+
+@keyframes pop {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.3); }
+}
+
+.pop {
+    animation: pop 0.4s ease;
+}
