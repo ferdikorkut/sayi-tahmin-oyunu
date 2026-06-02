@@ -76,9 +76,9 @@ const resetGame = function () {
     displaySecretNumber('?');
     displayMessage('Tahmin yapmaya başlayabilirsin!');
 
-    // Doğru tahmin sonrası eklenen görsel geri bildirimleri temizle
-    document.getElementById('secretNumber').classList.remove('secret-number-correct', 'pop');
-    document.body.classList.remove('body-correct');
+    // Tüm görsel geri bildirimleri temizle
+    document.getElementById('secretNumber').classList.remove('secret-number-correct', 'secret-number-wrong', 'pop');
+    document.body.classList.remove('body-correct', 'body-wrong');
 
     // Butonu tekrar checkGuess'e bağla
     document.getElementById('guessButton').removeEventListener('click', resetGame);
@@ -129,6 +129,17 @@ const checkGuess = function () {
         // Animasyon bitince class'ları kaldır (tekrar tekrar çalışsın diye)
         secretEl.addEventListener('animationend', () => secretEl.classList.remove('shake'), { once: true });
         document.body.addEventListener('animationend', () => document.body.classList.remove('flash-red'), { once: true });
+
+        if (score === 0) {
+            displayMessage(`Kaybettin! Gizli sayı ${secretNumber} idi.`);
+            displaySecretNumber(secretNumber);
+            document.getElementById('guessInput').disabled = true;
+            document.getElementById('guessButton').textContent = 'Yeniden Oyna';
+            document.getElementById('guessButton').removeEventListener('click', checkGuess);
+            document.getElementById('guessButton').addEventListener('click', resetGame);
+            document.body.classList.add('body-wrong');
+            document.getElementById('secretNumber').classList.add('secret-number-wrong');
+        }
     }
 };
 
