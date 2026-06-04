@@ -32,6 +32,7 @@ const startGame = function () {
     // !maxNumber: boş veya sıfır girişi yakalar; maxNumber < 2: geçersiz küçük değerleri engeller
     if (!maxNumber || maxNumber < 2) {
         alert('Lütfen 2 veya daha büyük bir sayı girin!');
+        document.getElementById('maxNumberInput').value = '';
         return;
     }
 
