@@ -7,6 +7,7 @@ let maxNumber;
 let secretNumber;
 let score;
 let highScore = 0;
+let playCount = 0;
 
 // ============================================================
 // YARDIMCI FONKSİYONLAR
@@ -39,6 +40,8 @@ const startGame = function () {
     secretNumber = Math.trunc(Math.random() * maxNumber) + 1;
     console.log(secretNumber);
     score = maxNumber;
+    playCount = 1;
+    document.getElementById('playCount').textContent = `${playCount}. oyun`;
 
     document.getElementById('gameDescription').textContent =
         `1 ile ${maxNumber} arasında bir sayı tahmin yap, skorunu koru!`;
@@ -68,6 +71,8 @@ const resetGame = function () {
     secretNumber = Math.trunc(Math.random() * maxNumber) + 1;
     console.log(secretNumber);
     score = maxNumber;
+    playCount++;
+    document.getElementById('playCount').textContent = `${playCount}. oyun`;
 
     document.getElementById('score').textContent = score;
     document.getElementById('guessInput').value = '';
